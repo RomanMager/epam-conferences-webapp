@@ -8,6 +8,10 @@ import java.util.concurrent.Executor;
 public class ProxyConnection implements Connection, AutoCloseable {
     private Connection connection;
     
+    ProxyConnection(Connection connection) {
+        this.connection = connection;
+    }
+    
     @Override
     public Statement createStatement() throws SQLException {
         return connection.createStatement();
