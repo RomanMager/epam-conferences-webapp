@@ -86,7 +86,7 @@ public class ConnectionPool {
     // deregister drivers
     public void destroy() {
         try {
-            for (int i = 0; i <= POOL_SIZE; i++) {
+            for (int i = 0; i < POOL_SIZE; i++) {
                 ProxyConnection connection = connectionQueue.take();
                 connection.closeConnection();
             }

@@ -1,10 +1,13 @@
 package com.epam.conference.pool;
 
+import lombok.ToString;
+
 import java.sql.*;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
+@ToString
 public class ProxyConnection implements Connection, AutoCloseable {
     private Connection connection;
     
@@ -68,7 +71,7 @@ public class ProxyConnection implements Connection, AutoCloseable {
     
     @Override
     public void close() throws SQLException {
-        throw new UnsupportedOperationException();
+        ConnectionPool.getInstance().releaseConnection(this);
     }
     
     
