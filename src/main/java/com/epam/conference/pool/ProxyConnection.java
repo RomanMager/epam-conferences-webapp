@@ -42,7 +42,7 @@ public class ProxyConnection implements Connection, AutoCloseable {
         return connection.isWrapperFor(iface);
     }
     
-    public void closeConnection() throws SQLException {
+    void closeConnection() throws SQLException {
         connection.close();
     }
     
