@@ -38,11 +38,14 @@ public class ProxyConnection implements Connection, AutoCloseable {
         return connection.isWrapperFor(iface);
     }
     
+    public void closeConnection() throws SQLException {
+        connection.close();
+    }
+    
     @Override
     public void setAutoCommit(boolean autoCommit) throws SQLException {
         connection.setAutoCommit(autoCommit);
     }
-    
     
     @Override
     public boolean getAutoCommit() throws SQLException {
@@ -61,8 +64,9 @@ public class ProxyConnection implements Connection, AutoCloseable {
     
     @Override
     public void close() throws SQLException {
-        connection.close();
+        throw new UnsupportedOperationException();
     }
+    
     
     @Override
     public boolean isClosed() throws SQLException {
