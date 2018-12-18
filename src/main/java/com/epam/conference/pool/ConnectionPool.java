@@ -9,11 +9,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
-// TODO: add <T> ???
 @Log4j2
 public class ConnectionPool {
     private static final int POOL_SIZE = 10;
-    // TODO: is ik okay to initialize field here?
     private static AtomicBoolean instanceCreated = new AtomicBoolean(false);
     private static ConnectionPool instance;
     private static ReentrantLock locker = new ReentrantLock();
@@ -31,7 +29,6 @@ public class ConnectionPool {
     private BlockingQueue<ProxyConnection> connectionQueue;
     
     private ConnectionPool() {
-        // TODO: init in constructor or when the field is declared?
         connectionQueue = new LinkedBlockingQueue<>(POOL_SIZE);
         setUpConnection();
     }
