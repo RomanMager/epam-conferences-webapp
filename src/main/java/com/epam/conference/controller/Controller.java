@@ -1,5 +1,7 @@
 package com.epam.conference.controller;
 
+import com.epam.conference.command.Command;
+import com.epam.conference.command.CommandMap;
 import com.epam.conference.pool.ConnectionPool;
 
 import javax.servlet.ServletException;
@@ -36,8 +38,12 @@ public class Controller extends HttpServlet {
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // TODO: Implement logic
         // get parameter with name "command"
+        String action = req.getParameter(COMMAND);
         // get command from command map
+        Command command = CommandMap.valueOf(action.toUpperCase()).getCommand();
         // execute command
+        String page = command.execute(req);
         // forward
+        req.getRequestDispatcher(page).forward(req, resp);
     }
 }
