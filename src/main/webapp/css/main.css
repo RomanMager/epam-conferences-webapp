@@ -19,3 +19,26 @@ body {
     background: #ffffff;
     font-family: 'Roboto', sans-serif;
 }
+
+/* Jumbotron */
+.jumbotron {
+    background: #17629D;
+    color: #ffffff;
+    padding: 80px 80px 40px;
+}
+
+.jumbotron h2 {
+    font-family: 'Oswald', sans-serif;
+}
+
+.jumbotron a, .jumbotron a:visited {
+    color: #ffffff
+}
+
+.jumbotron p {
+    font-size: 15px;
+}
+
+.navbar-dark .navbar-brand #brand {
+    color: #fff;
+}
