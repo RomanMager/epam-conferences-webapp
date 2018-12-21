@@ -1,11 +1,46 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <%--<div class="container">--%>
-    <%--TODO: on click should redirect to the MAIN page--%>
-    <a class="navbar-brand">
-        <%--<i class="fa fa-leaf" aria-hidden="true"></i>--%>
-        <i class="fa fa-leaf"></i>
-        Conferences
-    </a>
-    <%--</div>--%>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top nav-conference">
+    <div class="container">
+        <%--TODO: on click should redirect to the MAIN page--%>
+        <a class="navbar-brand">
+            <%--<i class="fa fa-leaf" aria-hidden="true"></i>--%>
+            <i class="fa fa-leaf"></i>
+            Conferences
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link">
+                        <i class="fas fa-home" aria-hidden="true"></i> Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fa fa-user" aria-hidden="true"></i> Account</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Sign Out</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fa fa-sign-in-alt" aria-hidden="true"></i> Sign In</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i> Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
