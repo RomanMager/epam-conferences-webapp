@@ -2,14 +2,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav-conference">
     <div class="container">
         <%--TODO: on click should redirect to the MAIN page--%>
-        <a class="navbar-brand">
-            <%--<i class="fa fa-leaf" aria-hidden="true"></i>--%>
+        <a class="navbar-brand mb-0 h1" id="brand">
             <i class="fa fa-leaf"></i>
+            <%--<i class="fa fa-leaf"></i>--%>
             Conferences
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -23,22 +23,26 @@
 
                 <li class="nav-item">
                     <a class="nav-link">
-                        <i class="fa fa-user" aria-hidden="true"></i> Account</a>
+                        <i class="fa fa-user" aria-hidden="true"></i> Account
+                    </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Sign Out</a>
+                        <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Sign Out
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link">
-                        <i class="fa fa-sign-in-alt" aria-hidden="true"></i> Sign In</a>
+                    <a class="nav-link" href="controller?command=to_login_page">
+                        <i class="fa fa-sign-in-alt" aria-hidden="true"></i> Sign In
+                    </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link">
-                        <i class="fa fa-user-plus" aria-hidden="true"></i> Register</a>
+                    <a class="nav-link" href="controller?command=to_register_page">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i> Register
+                    </a>
                 </li>
             </ul>
         </div>

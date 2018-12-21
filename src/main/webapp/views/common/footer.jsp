@@ -12,7 +12,7 @@
     <%--crossorigin="anonymous"></script>--%>
     <%--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"--%>
     <%--integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"--%>
-    <%--crossorigin="anonymous"></script>--%>
     <script type="text/javascript" src="<c:url value="/js/jquery_bootstrap.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/js/bootstrap.bundle.js"/>"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 </div>

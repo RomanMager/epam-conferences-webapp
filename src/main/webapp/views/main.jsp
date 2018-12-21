@@ -6,9 +6,8 @@
 </head>
 <body>
     <jsp:include page="common/navbar.jsp"/>
-    <div class="container">
-
-        <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container" align="center">
             <h1>
                 Main Content!!!
             </h1>
