@@ -42,3 +42,7 @@ body {
 .navbar-dark .navbar-brand #brand {
     color: #fff;
 }
+
+.register-form {
+    margin-top: 100px;
+}
