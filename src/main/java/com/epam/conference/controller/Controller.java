@@ -36,7 +36,6 @@ public class Controller extends HttpServlet {
     }
     
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // TODO: Implement logic
         // get parameter with name "command"
         String action = req.getParameter(COMMAND);
         // get command from command map

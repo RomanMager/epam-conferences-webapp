@@ -1,6 +1,9 @@
 package com.epam.conference.command.impl;
 
 import com.epam.conference.command.Command;
+import com.epam.conference.controller.Router;
+import com.epam.conference.entity.Person;
+import com.epam.conference.service.ParticipantService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +16,12 @@ public class Register implements Command {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
 
-        throw new UnsupportedOperationException();
+        ParticipantService participantService = new ParticipantService();
+
+        Person person = new Person(login, email, password);
+
+        participantService.createParticipant(person);
+
+        return Router.PAGE_MAIN;
     }
 }
