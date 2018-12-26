@@ -7,6 +7,11 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 public class ParticipantService {
+    public Person findParticipant(String login, String password) {
+        Person person = ParticipantDAOImpl.getInstance().findParticipantByLoginPassword(login, password);
+        return person;
+    }
+
     public Person findParticipant(String login, String email, String password) {
         throw new UnsupportedOperationException();
     }

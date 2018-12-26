@@ -4,7 +4,9 @@ public class Router {
     public static final String PAGE_LOGIN = "/views/login.jsp";
     public static final String PAGE_REGISTRATION = "/views/register.jsp";
     public static final String PAGE_MAIN = "/views/main.jsp";
-    
+
+    // TODO: Add link to the profile page
+
     private Router() {
     }
 }

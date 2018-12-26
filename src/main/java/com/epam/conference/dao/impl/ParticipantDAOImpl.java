@@ -7,12 +7,13 @@ import com.epam.conference.pool.ConnectionPool;
 import com.epam.conference.pool.ProxyConnection;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 public class ParticipantDAOImpl implements ParticipantDAO {
+    private static final String SQL_FIND_BY_LOGIN_PASSWORD = "SELECT * FROM persons WHERE persons.login = ? AND persons.password = ?";
     private static final String SQL_ADD_PARTICIPANT = "INSERT INTO persons(login, password, email) VALUES (?,?,?)";
-
     private static ParticipantDAOImpl instance = new ParticipantDAOImpl();
 
     private ParticipantDAOImpl() {
@@ -53,5 +54,20 @@ public class ParticipantDAOImpl implements ParticipantDAO {
     @Override
     public void registerParticipant() {
 
+    }
+
+    public Person findParticipantByLoginPassword(String login, String password) throws DAOException {
+        try (ProxyConnection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_FIND_BY_LOGIN_PASSWORD)) {
+            statement.setString(1, login);
+            statement.setString(2, password);
+
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                String login = result.getString("login");
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Error occurred when tried to find user by login and password.", e);
+        }
     }
 }
