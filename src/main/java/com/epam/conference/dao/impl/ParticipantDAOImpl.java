@@ -64,10 +64,11 @@ public class ParticipantDAOImpl implements ParticipantDAO {
 
             ResultSet result = statement.executeQuery();
             while (result.next()) {
-                String login = result.getString("login");
             }
         } catch (SQLException e) {
             throw new DAOException("Error occurred when tried to find user by login and password.", e);
         }
+
+        throw new UnsupportedOperationException();
     }
 }
