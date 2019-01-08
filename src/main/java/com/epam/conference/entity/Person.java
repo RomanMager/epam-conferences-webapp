@@ -27,6 +27,12 @@ public class Person extends Entity {
         this.password = password;
     }
 
+    public Person(int personId, String login, String email, String password) {
+        this.personId = personId;
+        this.login = login;
+        this.email = email;
+        this.password = password;
+    }
 }
 
 
