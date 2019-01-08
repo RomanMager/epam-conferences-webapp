@@ -15,7 +15,7 @@ public class ConnectionPool {
     private static AtomicBoolean instanceCreated = new AtomicBoolean(false);
     private static ConnectionPool instance;
     private static ReentrantLock locker = new ReentrantLock();
-    
+
     // Register DB drivers
     static {
         try {
@@ -25,14 +25,14 @@ public class ConnectionPool {
             throw new RuntimeException(e);
         }
     }
-    
+
     private BlockingQueue<ProxyConnection> connectionQueue;
-    
+
     private ConnectionPool() {
         connectionQueue = new LinkedBlockingQueue<>(POOL_SIZE);
         setUpConnection();
     }
-    
+
     public static ConnectionPool getInstance() {
         if (!instanceCreated.get()) {
             locker.lock();
@@ -45,10 +45,10 @@ public class ConnectionPool {
                 locker.unlock();
             }
         }
-        
+
         return instance;
     }
-    
+
     private void setUpConnection() {
         for (int i = 0; i <= POOL_SIZE; i++) {
             try {
@@ -56,7 +56,7 @@ public class ConnectionPool {
                         DbProperties.readUrl(),
                         DbProperties.readProperties()
                 ));
-                
+
                 // todo: user 'offer' or 'add' ?
                 connectionQueue.offer(connection);
             } catch (SQLException e) {
@@ -65,7 +65,7 @@ public class ConnectionPool {
             }
         }
     }
-    
+
     public ProxyConnection getConnection() {
         ProxyConnection connection = null;
         try {
@@ -75,11 +75,11 @@ public class ConnectionPool {
         }
         return connection;
     }
-    
+
     public void releaseConnection(ProxyConnection connection) {
         connectionQueue.offer(connection);
     }
-    
+
     // deregister drivers
     public void destroy() {
         try {
@@ -90,7 +90,7 @@ public class ConnectionPool {
         } catch (InterruptedException | SQLException e) {
             log.error("Error occurred while closing connections." + e);
         }
-        
+
         DriverManager.drivers().forEach(driver -> {
             try {
                 DriverManager.deregisterDriver(driver);
@@ -98,7 +98,7 @@ public class ConnectionPool {
                 log.error("Error occurred while deregister drivers." + e);
             }
         });
-        
+
         log.info("Connections are successfully closed. Drivers have been deregistered.");
     }
 }
