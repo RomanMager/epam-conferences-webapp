@@ -1,6 +1,5 @@
 package com.epam.conference.dao.impl;
 
-import com.epam.conference.dao.ParticipantDAO;
 import com.epam.conference.entity.Person;
 import com.epam.conference.exception.DAOException;
 import com.epam.conference.pool.ConnectionPool;
@@ -9,17 +8,20 @@ import com.epam.conference.pool.ProxyConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ParticipantDAOImpl implements ParticipantDAO {
-    private static final String SQL_FIND_BY_LOGIN_PASSWORD = "SELECT * FROM persons WHERE persons.login = ? AND persons.password = ?";
-    private static final String SQL_ADD_PARTICIPANT = "INSERT INTO persons(login, password, email) VALUES (?,?,?)";
-    private static ParticipantDAOImpl instance = new ParticipantDAOImpl();
+public class ParticipantDAO implements com.epam.conference.dao.ParticipantDAO {
+    private static final String SQL_FIND_BY_LOGIN_PASSWORD = "SELECT * FROM persons WHERE persons.login = ? AND persons.password = ?;";
+    private static final String SQL_ADD_PARTICIPANT = "INSERT INTO persons(login, password, email) VALUES (?,?,?);";
+    private static final String SQL_GET_ALL_PARTICIPANTS = "SELECT personId, login, password, email FROM persons;";
 
-    private ParticipantDAOImpl() {
+    private static ParticipantDAO instance = new ParticipantDAO();
+
+    private ParticipantDAO() {
     }
 
-    public static ParticipantDAOImpl getInstance() {
+    public static ParticipantDAO getInstance() {
         return instance;
     }
 
@@ -47,8 +49,26 @@ public class ParticipantDAOImpl implements ParticipantDAO {
     }
 
     @Override
-    public List<Person> findAll() {
-        return null;
+    public List<Person> findAll() throws DAOException {
+        List<Person> personList = new ArrayList<>();
+
+        try (ProxyConnection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement statement = connection.prepareStatement(SQL_GET_ALL_PARTICIPANTS)) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int personId = resultSet.getInt("personId");
+                String login = resultSet.getString("login");
+                String email = resultSet.getString("email");
+                String password = resultSet.getString("password");
+
+                Person person = new Person(personId, login, email, password);
+                personList.add(person);
+            }
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+
+        return personList;
     }
 
     @Override
@@ -64,6 +84,7 @@ public class ParticipantDAOImpl implements ParticipantDAO {
 
             ResultSet result = statement.executeQuery();
             while (result.next()) {
+                // TODO: Add implementation
             }
         } catch (SQLException e) {
             throw new DAOException("Error occurred when tried to find user by login and password.", e);

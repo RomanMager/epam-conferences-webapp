@@ -16,5 +16,5 @@ public interface DAO<T extends Entity> {
 
     void update(T entity);
 
-    List<T> findAll();
+    List<T> findAll() throws DAOException;
 }
