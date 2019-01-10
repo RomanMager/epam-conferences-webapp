@@ -24,8 +24,7 @@ public class SignIn implements Command {
             HttpSession session = request.getSession();
             session.setAttribute("login", participant.getLogin());
             session.setAttribute("role", participant.getRole());
-            // TODO: Maybe redirect to the profile page?
-            page = Router.PAGE_MAIN;
+            page = Router.PAGE_PROFILE;
         } else {
             request.setAttribute("error", "Incorrect login or password");
             page = Router.PAGE_MAIN; // TODO: replace with error page

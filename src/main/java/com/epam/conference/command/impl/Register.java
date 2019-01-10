@@ -20,6 +20,7 @@ public class Register implements Command {
 
         Person person = new Person(login, email, password);
 
+        // TODO: Check if already exists in DB
         participantService.createParticipant(person);
 
         return Router.PAGE_MAIN;
