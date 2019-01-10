@@ -23,12 +23,13 @@
 
                 <li class="nav-item">
                     <a class="nav-link">
+                        <%-- TODO: Redirect to profile page --%>
                         <i class="fa fa-user" aria-hidden="true"></i> Account
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="controller?command=sign_out">
                         <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Sign Out
                     </a>
                 </li>

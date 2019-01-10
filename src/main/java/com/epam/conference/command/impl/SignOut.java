@@ -1,12 +1,17 @@
 package com.epam.conference.command.impl;
 
 import com.epam.conference.command.Command;
+import com.epam.conference.controller.Router;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class SignOut implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException();
+        HttpSession session = request.getSession();
+        session.invalidate();
+
+        return Router.PAGE_MAIN;
     }
 }
