@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>Hello, fellow participants!</h1>
+    <%-- TODO: Is that a good practice? --%>
     <jsp:useBean id="participants" scope="request" type="java.util.List"/>
 
     <table>

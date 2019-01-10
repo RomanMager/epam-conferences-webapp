@@ -22,8 +22,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link">
-                        <%-- TODO: Redirect to profile page --%>
+                    <a class="nav-link" href="controller?command=to_profile_page">
                         <i class="fa fa-user" aria-hidden="true"></i> Account
                     </a>
                 </li>
