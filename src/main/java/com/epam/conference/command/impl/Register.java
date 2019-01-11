@@ -4,6 +4,7 @@ import com.epam.conference.command.Command;
 import com.epam.conference.controller.Router;
 import com.epam.conference.entity.ParticipantData;
 import com.epam.conference.entity.Person;
+import com.epam.conference.exception.ServiceException;
 import com.epam.conference.service.ParticipantService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,11 @@ public class Register implements Command {
         ParticipantData data = new ParticipantData(name, surname);
 
         // TODO: Check if already exists in DB
-        participantService.createParticipant(person, data);
+        try {
+            participantService.createParticipant(person, data);
+        } catch (ServiceException e) {
+            request.setAttribute("error", e.getMessage()); // TODO: Is it a valid way to handle exceptions in commands?
+        }
         return Router.PAGE_MAIN;
     }
 }
