@@ -2,6 +2,7 @@ package com.epam.conference.command.impl;
 
 import com.epam.conference.command.Command;
 import com.epam.conference.controller.Router;
+import com.epam.conference.entity.ParticipantData;
 import com.epam.conference.entity.Person;
 import com.epam.conference.service.ParticipantService;
 
@@ -19,10 +20,10 @@ public class Register implements Command {
         ParticipantService participantService = new ParticipantService();
 
         Person person = new Person(login, email, password);
+        ParticipantData data = new ParticipantData(name, surname);
 
         // TODO: Check if already exists in DB
-        participantService.createParticipant(person);
-
+        participantService.createParticipant(person, data);
         return Router.PAGE_MAIN;
     }
 }
