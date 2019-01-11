@@ -1,5 +1,6 @@
 package com.epam.conference.dao.impl;
 
+import com.epam.conference.entity.ParticipantData;
 import com.epam.conference.entity.Person;
 import com.epam.conference.exception.DAOException;
 import com.epam.conference.pool.ConnectionPool;
@@ -16,6 +17,9 @@ import java.util.List;
 public class ParticipantDAO implements com.epam.conference.dao.ParticipantDAO {
     private static final String SQL_FIND_BY_LOGIN_PASSWORD = "SELECT * FROM persons WHERE persons.login = ? AND persons.password = ?;";
     private static final String SQL_ADD_PARTICIPANT = "INSERT INTO persons(login, password, email) VALUES (?,?,?);";
+    //    private static final String SQL_ADD_PARTICIPANT_DATA = "INSERT INTO participant_data(personId, name, surname) VALUES (?,?,?);";
+    private static final String SQL_ADD_PARTICIPANT_TRANSACTION_USER = "INSERT INTO persons(login, password, email) VALUES (?,?,?);";
+    private static final String SQL_ADD_PARTICIPANT_TRANSACTION_DATA = "INSERT INTO participant_data(personId, name, surname) VALUES (LAST_INSERT_ID(),?,?);";
     private static final String SQL_GET_ALL_PARTICIPANTS = "SELECT personId, login, password, email FROM persons;";
 
     private static ParticipantDAO instance = new ParticipantDAO();
@@ -28,13 +32,37 @@ public class ParticipantDAO implements com.epam.conference.dao.ParticipantDAO {
     }
 
     @Override
-    public void add(Person entity) throws DAOException { // TODO: Rename parameter
+    public void add(Person person) throws DAOException {
         try (ProxyConnection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_ADD_PARTICIPANT)) {
-            statement.setString(1, entity.getLogin());
-            statement.setString(2, entity.getPassword());
-            statement.setString(3, entity.getEmail());
-            statement.executeUpdate();
+             PreparedStatement psUser = connection.prepareStatement(SQL_ADD_PARTICIPANT)) {
+            psUser.setString(1, person.getLogin());
+            psUser.setString(2, person.getPassword());
+            psUser.setString(3, person.getEmail());
+            psUser.executeUpdate();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    public void add(Person person, ParticipantData data) throws DAOException {
+        try (ProxyConnection connection = ConnectionPool.getInstance().getConnection();
+             PreparedStatement psUser = connection.prepareStatement(SQL_ADD_PARTICIPANT_TRANSACTION_USER);
+             PreparedStatement psData = connection.prepareStatement(SQL_ADD_PARTICIPANT_TRANSACTION_DATA)) {
+
+
+            connection.setAutoCommit(false);
+
+            psUser.setString(1, person.getLogin());
+            psUser.setString(2, person.getPassword());
+            psUser.setString(3, person.getEmail());
+            psUser.executeUpdate();
+
+            psData.setString(1, data.getName());
+            psData.setString(2, data.getSurname());
+            psData.executeUpdate();
+
+            connection.commit();
+            connection.setAutoCommit(true);
         } catch (SQLException e) {
             throw new DAOException(e);
         }
@@ -93,12 +121,11 @@ public class ParticipantDAO implements com.epam.conference.dao.ParticipantDAO {
 
         try {
             while (resultSet.next()) {
-                int personId = resultSet.getInt("personId");
                 String login = resultSet.getString("login");
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
 
-                Person person = new Person(personId, login, email, password);
+                Person person = new Person(login, email, password);
                 personList.add(person);
             }
         } catch (SQLException e) {
