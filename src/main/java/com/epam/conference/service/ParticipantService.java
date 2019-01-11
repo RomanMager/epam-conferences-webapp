@@ -24,7 +24,7 @@ public class ParticipantService {
         }
     }
 
-    public List<Person> getAllParticipants() throws ServiceException {
+    public List<Person> findAllParticipants() throws ServiceException {
         List<Person> personList;
         try {
             personList = ParticipantDaoImpl.getInstance().findAll();

@@ -19,7 +19,7 @@ public class GetUsers implements Command {
         ParticipantService service = new ParticipantService();
 
         try {
-            participants = service.getAllParticipants();
+            participants = service.findAllParticipants();
             page = Router.PAGE_PARTICIPANTS;
         } catch (ServiceException e) {
             request.setAttribute("error", e);
