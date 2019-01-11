@@ -8,8 +8,6 @@ public class Router {
     public static final String PAGE_PROFILE = "/views/profile.jsp";
     public static final String PAGE_ERROR = "/views/error/error.jsp";
 
-    // TODO: Add link to the profile page
-
     private Router() {
     }
 }

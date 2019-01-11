@@ -1,6 +1,5 @@
 package com.epam.conference.exception;
 
-// TODO: Is 'Service Exception' a valid name?
 public class ServiceException extends Exception {
     public ServiceException() {
         super();

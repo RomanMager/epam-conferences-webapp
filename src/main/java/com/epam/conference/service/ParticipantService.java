@@ -12,14 +12,14 @@ import java.util.List;
 @Log4j2
 public class ParticipantService {
 
-    public void createParticipant(Person person, ParticipantData data) {
+    public void createParticipant(Person person, ParticipantData data) throws ServiceException {
         // TODO: VALIDATION
         //      - Check if already exists in DB
         ParticipantDaoImpl participantDAOImpl = ParticipantDaoImpl.getInstance();
         try {
             participantDAOImpl.registerParticipant(person, data);
         } catch (DaoException e) {
-            // TODO: TROW exception or LOG exception?
+//            throw new ServiceException(e);
             log.error(e);
         }
     }
