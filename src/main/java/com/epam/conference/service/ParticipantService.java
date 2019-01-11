@@ -17,7 +17,7 @@ public class ParticipantService {
         //      - Check if already exists in DB
         ParticipantDaoImpl participantDAOImpl = ParticipantDaoImpl.getInstance();
         try {
-            participantDAOImpl.add(person, data);
+            participantDAOImpl.registerParticipant(person, data);
         } catch (DAOException e) {
             // TODO: TROW exception or LOG exception?
             log.error(e);

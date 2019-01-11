@@ -44,7 +44,7 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
         }
     }
 
-    public void add(Person person, ParticipantData data) throws DAOException {
+    public void registerParticipant(Person person, ParticipantData data) throws DAOException {
         try (ProxyConnection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement psUser = connection.prepareStatement(SQL_ADD_PARTICIPANT_TRANSACTION_USER);
              PreparedStatement psData = connection.prepareStatement(SQL_ADD_PARTICIPANT_TRANSACTION_DATA)) {
@@ -93,12 +93,7 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
         return participants;
     }
 
-    // TODO: Delete -- to create\register a user method `add()` is used
     @Override
-    public void registerParticipant() {
-        throw new UnsupportedOperationException();
-    }
-
     public Person findParticipantByLoginPassword(String login, String password) throws DAOException {
         List<Person> participants;
 
