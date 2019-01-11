@@ -9,7 +9,7 @@ import java.util.List;
 //  - What is better to use?
 //  -- Introduce K as a 'key' in method (ex. `delete(K id)`)
 //  -- Make it auto-closable?
-public interface DAO<T extends Entity> {
+public interface Dao<T extends Entity> {
     void add(T entity) throws DAOException;
 
     void remove(T entity);

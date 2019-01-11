@@ -1,6 +1,6 @@
 package com.epam.conference.service;
 
-import com.epam.conference.dao.impl.ParticipantDAO;
+import com.epam.conference.dao.impl.ParticipantDao;
 import com.epam.conference.entity.ParticipantData;
 import com.epam.conference.entity.Person;
 import com.epam.conference.exception.DAOException;
@@ -15,7 +15,7 @@ public class ParticipantService {
     public void createParticipant(Person person, ParticipantData data) {
         // TODO: VALIDATION
         //      - Check if already exists in DB
-        ParticipantDAO participantDAO = ParticipantDAO.getInstance();
+        ParticipantDao participantDAO = ParticipantDao.getInstance();
         try {
             participantDAO.add(person, data);
         } catch (DAOException e) {
@@ -27,7 +27,7 @@ public class ParticipantService {
     public List<Person> getAllParticipants() throws ServiceException {
         List<Person> personList;
         try {
-            personList = ParticipantDAO.getInstance().findAll();
+            personList = ParticipantDao.getInstance().findAll();
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -37,7 +37,7 @@ public class ParticipantService {
     public Person findParticipant(String login, String password) {
         Person person = null;
         try {
-            person = ParticipantDAO.getInstance().findParticipantByLoginPassword(login, password);
+            person = ParticipantDao.getInstance().findParticipantByLoginPassword(login, password);
         } catch (DAOException e) {
             e.printStackTrace();
         }

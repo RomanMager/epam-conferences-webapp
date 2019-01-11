@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
-public class ParticipantDAO implements com.epam.conference.dao.ParticipantDAO {
+public class ParticipantDao implements com.epam.conference.dao.ParticipantDao {
     private static final String SQL_FIND_BY_LOGIN_PASSWORD = "SELECT * FROM persons WHERE persons.login = ? AND persons.password = ?;";
     private static final String SQL_ADD_PARTICIPANT = "INSERT INTO persons(login, password, email) VALUES (?,?,?);";
     //    private static final String SQL_ADD_PARTICIPANT_DATA = "INSERT INTO participant_data(personId, name, surname) VALUES (?,?,?);";
@@ -22,12 +22,12 @@ public class ParticipantDAO implements com.epam.conference.dao.ParticipantDAO {
     private static final String SQL_ADD_PARTICIPANT_TRANSACTION_DATA = "INSERT INTO participant_data(personId, name, surname) VALUES (LAST_INSERT_ID(),?,?);";
     private static final String SQL_GET_ALL_PARTICIPANTS = "SELECT personId, login, password, email FROM persons;";
 
-    private static ParticipantDAO instance = new ParticipantDAO();
+    private static ParticipantDao instance = new ParticipantDao();
 
-    private ParticipantDAO() {
+    private ParticipantDao() {
     }
 
-    public static ParticipantDAO getInstance() {
+    public static ParticipantDao getInstance() {
         return instance;
     }
 
