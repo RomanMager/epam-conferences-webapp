@@ -3,7 +3,7 @@ package com.epam.conference.service;
 import com.epam.conference.dao.impl.ParticipantDaoImpl;
 import com.epam.conference.entity.ParticipantData;
 import com.epam.conference.entity.Person;
-import com.epam.conference.exception.DAOException;
+import com.epam.conference.exception.DaoException;
 import com.epam.conference.exception.ServiceException;
 import lombok.extern.log4j.Log4j2;
 
@@ -18,7 +18,7 @@ public class ParticipantService {
         ParticipantDaoImpl participantDAOImpl = ParticipantDaoImpl.getInstance();
         try {
             participantDAOImpl.registerParticipant(person, data);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             // TODO: TROW exception or LOG exception?
             log.error(e);
         }
@@ -28,7 +28,7 @@ public class ParticipantService {
         List<Person> personList;
         try {
             personList = ParticipantDaoImpl.getInstance().findAll();
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             throw new ServiceException(e);
         }
         return personList;
@@ -38,7 +38,7 @@ public class ParticipantService {
         Person person = null;
         try {
             person = ParticipantDaoImpl.getInstance().findParticipantByLoginPassword(login, password);
-        } catch (DAOException e) {
+        } catch (DaoException e) {
             e.printStackTrace();
         }
         return person;

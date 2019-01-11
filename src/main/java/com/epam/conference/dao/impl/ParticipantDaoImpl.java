@@ -2,7 +2,7 @@ package com.epam.conference.dao.impl;
 
 import com.epam.conference.entity.ParticipantData;
 import com.epam.conference.entity.Person;
-import com.epam.conference.exception.DAOException;
+import com.epam.conference.exception.DaoException;
 import com.epam.conference.pool.ConnectionPool;
 import com.epam.conference.pool.ProxyConnection;
 import lombok.extern.log4j.Log4j2;
@@ -34,7 +34,7 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
     // TODO: Refactor to create admins
     //  - create supplementary function 'createAdmins' as like 'createParticipants'
     @Override
-    public void add(Person person) throws DAOException {
+    public void add(Person person) throws DaoException {
         try (ProxyConnection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement psUser = connection.prepareStatement(SQL_ADD_PARTICIPANT)) {
             psUser.setString(1, person.getLogin());
@@ -42,7 +42,7 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
             psUser.setString(3, person.getEmail());
             psUser.executeUpdate();
         } catch (SQLException e) {
-            throw new DAOException(e);
+            throw new DaoException(e);
         }
     }
 
@@ -57,7 +57,7 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
     }
 
     @Override
-    public void registerParticipant(Person person, ParticipantData data) throws DAOException {
+    public void registerParticipant(Person person, ParticipantData data) throws DaoException {
         ProxyConnection connection = ConnectionPool.getInstance().getConnection();
         try (PreparedStatement psUser = connection.prepareStatement(SQL_ADD_PARTICIPANT_TRANSACTION_USER);
              PreparedStatement psData = connection.prepareStatement(SQL_ADD_PARTICIPANT_TRANSACTION_DATA)) {
@@ -79,9 +79,9 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
             try {
                 connection.rollback();
             } catch (SQLException e1) {
-                throw new DAOException(e1);
+                throw new DaoException(e1);
             }
-            throw new DAOException(e);
+            throw new DaoException(e);
         } finally {
             if (connection != null) {
                 try {
@@ -96,7 +96,7 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
     }
 
     @Override
-    public List<Person> findAll() throws DAOException {
+    public List<Person> findAll() throws DaoException {
         List<Person> participants;
 
         try (ProxyConnection connection = ConnectionPool.getInstance().getConnection();
@@ -104,14 +104,14 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
             ResultSet resultSet = statement.executeQuery();
             participants = this.createParticipants(resultSet);
         } catch (SQLException e) {
-            throw new DAOException(e); // TODO: Add meaningful message
+            throw new DaoException(e); // TODO: Add meaningful message
         }
 
         return participants;
     }
 
     @Override
-    public Person findParticipantByLoginPassword(String login, String password) throws DAOException {
+    public Person findParticipantByLoginPassword(String login, String password) throws DaoException {
         List<Person> participants;
 
         try (ProxyConnection connection = ConnectionPool.getInstance().getConnection();
@@ -122,13 +122,13 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
             ResultSet result = statement.executeQuery();
             participants = this.createParticipants(result);
         } catch (SQLException e) {
-            throw new DAOException("An error occurred when tried to find a user by login and password.", e);
+            throw new DaoException("An error occurred when tried to find a user by login and password.", e);
         }
 
         return participants.get(0);
     }
 
-    private List<Person> createParticipants(ResultSet resultSet) throws DAOException {
+    private List<Person> createParticipants(ResultSet resultSet) throws DaoException {
         List<Person> personList = new ArrayList<>();
 
         try {
@@ -141,7 +141,7 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
                 personList.add(person);
             }
         } catch (SQLException e) {
-            throw new DAOException("Could not find a user.");
+            throw new DaoException("Could not find a user.");
         }
 
         return personList;

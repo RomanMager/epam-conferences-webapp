@@ -56,8 +56,6 @@ public class ConnectionPool {
                         DbProperties.readUrl(),
                         DbProperties.readProperties()
                 ));
-
-                // todo: user 'offer' or 'add' ?
                 connectionQueue.offer(connection);
             } catch (SQLException e) {
                 log.error("Unable to initialize Connection Pool.");
