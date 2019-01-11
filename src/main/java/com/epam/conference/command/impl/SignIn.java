@@ -11,10 +11,10 @@ import javax.servlet.http.HttpSession;
 public class SignIn implements Command {
     @Override
     public String execute(HttpServletRequest request) {
+        String page;
         String login = request.getParameter("login");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String page;
 
         ParticipantService participantService = new ParticipantService();
 
@@ -24,6 +24,7 @@ public class SignIn implements Command {
             HttpSession session = request.getSession();
             session.setAttribute("login", participant.getLogin());
             session.setAttribute("role", participant.getRole());
+            session.setAttribute("personId", participant.getPersonId());
             page = Router.PAGE_PROFILE;
         } else {
             request.setAttribute("error", "Incorrect login or password");
