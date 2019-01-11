@@ -3,14 +3,14 @@ package com.epam.conference.pool;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-class DbProperties {
+class DatabaseConfigurator {
     private static ResourceBundle bundle;
     
     static {
         bundle = ResourceBundle.getBundle("database");
     }
-    
-    private DbProperties() {
+
+    private DatabaseConfigurator() {
     }
     
     static Properties readProperties() {

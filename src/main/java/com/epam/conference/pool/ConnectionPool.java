@@ -52,9 +52,8 @@ public class ConnectionPool {
     private void setUpConnection() {
         for (int i = 0; i <= POOL_SIZE; i++) {
             try {
-                ProxyConnection connection = new ProxyConnection(DriverManager.getConnection(
-                        DbProperties.readUrl(),
-                        DbProperties.readProperties()
+                ProxyConnection connection = new ProxyConnection(DriverManager.getConnection(DatabaseConfigurator.readUrl(), DatabaseConfigurator
+                        .readProperties()
                 ));
                 connectionQueue.offer(connection);
             } catch (SQLException e) {
