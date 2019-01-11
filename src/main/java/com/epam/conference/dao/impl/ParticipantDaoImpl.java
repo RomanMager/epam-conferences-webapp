@@ -31,6 +31,8 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
         return instance;
     }
 
+    // TODO: Refactor to create admins
+    //  - create supplementary function 'createAdmins' as like 'createParticipants'
     @Override
     public void add(Person person) throws DAOException {
         try (ProxyConnection connection = ConnectionPool.getInstance().getConnection();
@@ -44,11 +46,21 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
         }
     }
 
-    public void registerParticipant(Person person, ParticipantData data) throws DAOException {
-        try (ProxyConnection connection = ConnectionPool.getInstance().getConnection();
-             PreparedStatement psUser = connection.prepareStatement(SQL_ADD_PARTICIPANT_TRANSACTION_USER);
-             PreparedStatement psData = connection.prepareStatement(SQL_ADD_PARTICIPANT_TRANSACTION_DATA)) {
+    @Override
+    public void remove(Person entity) {
+        throw new UnsupportedOperationException();
+    }
 
+    @Override
+    public void update(Person entity) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void registerParticipant(Person person, ParticipantData data) throws DAOException {
+        ProxyConnection connection = ConnectionPool.getInstance().getConnection();
+        try (PreparedStatement psUser = connection.prepareStatement(SQL_ADD_PARTICIPANT_TRANSACTION_USER);
+             PreparedStatement psData = connection.prepareStatement(SQL_ADD_PARTICIPANT_TRANSACTION_DATA)) {
 
             connection.setAutoCommit(false);
 
@@ -64,18 +76,23 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
             connection.commit();
             connection.setAutoCommit(true);
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                throw new DAOException(e1);
+            }
             throw new DAOException(e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    // TODO: Really throwing exception from 'finally'?
+                    //  - or just logging it?
+                    log.error(e);
+                }
+            }
         }
-    }
-
-    @Override
-    public void remove(Person entity) {
-
-    }
-
-    @Override
-    public void update(Person entity) {
-
     }
 
     @Override
