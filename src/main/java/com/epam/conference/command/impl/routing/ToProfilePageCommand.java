@@ -1,4 +1,4 @@
-package com.epam.conference.command.impl;
+package com.epam.conference.command.impl.routing;
 
 import com.epam.conference.command.Command;
 import com.epam.conference.controller.Router;

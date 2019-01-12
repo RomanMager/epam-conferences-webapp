@@ -1,6 +1,12 @@
 package com.epam.conference.command;
 
-import com.epam.conference.command.impl.*;
+import com.epam.conference.command.impl.GetUsersCommand;
+import com.epam.conference.command.impl.RegisterCommand;
+import com.epam.conference.command.impl.SignInCommand;
+import com.epam.conference.command.impl.SignOutCommand;
+import com.epam.conference.command.impl.routing.ToLoginPageCommand;
+import com.epam.conference.command.impl.routing.ToMainPageCommand;
+import com.epam.conference.command.impl.routing.ToRegisterPageCommand;
 
 public enum CommandMap {
     TO_MAIN_PAGE(new ToMainPageCommand()),
