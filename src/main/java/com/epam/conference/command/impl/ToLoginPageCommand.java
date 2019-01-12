@@ -4,14 +4,10 @@ import com.epam.conference.command.Command;
 import com.epam.conference.controller.Router;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-public class SignOut implements Command {
+public class ToLoginPageCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        session.invalidate();
-
-        return Router.PAGE_MAIN;
+        return Router.PAGE_LOGIN;
     }
 }

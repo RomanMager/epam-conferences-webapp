@@ -3,10 +3,14 @@ package com.epam.conference.command;
 import com.epam.conference.command.impl.*;
 
 public enum CommandMap {
-    SIGN_IN(new SignIn()),
-    SIGN_OUT(new SignOut()),
-    REGISTER(new Register()), TO_MAIN_PAGE(new ToMainPage()),
-    TO_REGISTER_PAGE(new ToRegisterPage()), TO_LOGIN_PAGE(new ToLoginPage()), TO_PROFILE_PAGE(new ToLoginPage()), GET_USERS(new GetUsers());
+    TO_MAIN_PAGE(new ToMainPageCommand()),
+    TO_REGISTER_PAGE(new ToRegisterPageCommand()),
+    TO_LOGIN_PAGE(new ToLoginPageCommand()),
+    TO_PROFILE_PAGE(new ToLoginPageCommand()),
+    REGISTER(new RegisterCommand()),
+    SIGN_IN(new SignInCommand()),
+    SIGN_OUT(new SignOutCommand()),
+    GET_USERS(new GetUsersCommand());
 
     private final Command command;
 

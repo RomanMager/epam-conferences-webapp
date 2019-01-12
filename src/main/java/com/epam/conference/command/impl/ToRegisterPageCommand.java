@@ -1,12 +1,14 @@
 package com.epam.conference.command.impl;
 
 import com.epam.conference.command.Command;
+import com.epam.conference.controller.Router;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class ToMainPage implements Command {
+public class ToRegisterPageCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        throw new UnsupportedOperationException();
+        return Router.PAGE_REGISTRATION;
     }
+
 }

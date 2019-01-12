@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetUsers implements Command {
+public class GetUsersCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         String page;

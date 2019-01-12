@@ -9,7 +9,7 @@ import com.epam.conference.service.ParticipantService;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class Register implements Command {
+public class RegisterCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         String login = request.getParameter("login");
