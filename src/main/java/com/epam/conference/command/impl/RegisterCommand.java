@@ -4,12 +4,15 @@ import com.epam.conference.command.Command;
 import com.epam.conference.controller.Router;
 import com.epam.conference.entity.ParticipantData;
 import com.epam.conference.entity.Person;
+import com.epam.conference.entity.Role;
 import com.epam.conference.exception.ServiceException;
 import com.epam.conference.service.ParticipantService;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class RegisterCommand implements Command {
+    private static final int PARTICIPANT_ROLE_ID = 2;
+
     @Override
     public String execute(HttpServletRequest request) {
         String login = request.getParameter("login");
@@ -20,7 +23,8 @@ public class RegisterCommand implements Command {
 
         ParticipantService participantService = new ParticipantService();
 
-        Person person = new Person(login, email, password);
+        Role role = new Role(PARTICIPANT_ROLE_ID);
+        Person person = new Person(login, email, password, role);
         ParticipantData data = new ParticipantData(name, surname);
 
         // TODO: Check if already exists in DB

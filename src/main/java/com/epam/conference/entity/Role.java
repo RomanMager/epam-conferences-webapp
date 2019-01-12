@@ -13,4 +13,8 @@ import lombok.NoArgsConstructor;
 public class Role extends Entity {
     private int roleNameId;
     private String roleName;
+
+    public Role(int roleNameId) {
+        this.roleNameId = roleNameId;
+    }
 }

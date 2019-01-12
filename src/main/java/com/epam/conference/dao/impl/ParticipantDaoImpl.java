@@ -18,7 +18,7 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
     private static final String SQL_FIND_BY_LOGIN_PASSWORD = "SELECT * FROM persons WHERE persons.login = ? AND persons.password = ?;";
     private static final String SQL_ADD_PARTICIPANT = "INSERT INTO persons(login, password, email) VALUES (?,?,?);";
     //    private static final String SQL_ADD_PARTICIPANT_DATA = "INSERT INTO participant_data(personId, name, surname) VALUES (?,?,?);";
-    private static final String SQL_ADD_PARTICIPANT_TRANSACTION_USER = "INSERT INTO persons(login, password, email) VALUES (?,?,?);";
+    private static final String SQL_ADD_PARTICIPANT_TRANSACTION_USER = "INSERT INTO persons(login, password, email, roleId) VALUES (?,?,?,?);";
     private static final String SQL_ADD_PARTICIPANT_TRANSACTION_DATA = "INSERT INTO participant_data(personId, name, surname) VALUES (LAST_INSERT_ID(),?,?);";
     private static final String SQL_GET_ALL_PARTICIPANTS = "SELECT personId, login, password, email FROM persons;";
 
@@ -67,6 +67,7 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
             psUser.setString(1, person.getLogin());
             psUser.setString(2, person.getPassword());
             psUser.setString(3, person.getEmail());
+            psUser.setInt(4, person.getRole().getRoleNameId());
             psUser.executeUpdate();
 
             psData.setString(1, data.getName());
@@ -87,7 +88,7 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
                 try {
                     connection.close();
                 } catch (SQLException e) {
-                    // TODO: Really throwing exception from 'finally'?
+                    // TODO: Really throw exception from 'finally'?
                     //  - or just logging it?
                     log.error(e);
                 }
