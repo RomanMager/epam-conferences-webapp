@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class RoleName extends Entity {
+public class Role extends Entity {
     private int roleNameId;
     private String roleName;
 }
