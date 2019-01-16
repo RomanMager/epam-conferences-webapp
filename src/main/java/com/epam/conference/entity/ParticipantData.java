@@ -10,6 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class ParticipantData extends Entity {
+    private int participantDataId;
+    private int personId;
     private String name;
     private String surname;
+
+    public ParticipantData(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
 }

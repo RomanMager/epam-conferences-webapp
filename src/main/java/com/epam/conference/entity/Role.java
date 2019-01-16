@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Role extends Entity {
-    private int roleNameId;
+    private int roleId;
     private String roleName;
 
-    public Role(int roleNameId) {
-        this.roleNameId = roleNameId;
+    public Role(int roleId) {
+        this.roleId = roleId;
     }
 }
