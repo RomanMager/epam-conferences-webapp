@@ -1,6 +1,7 @@
 package com.epam.conference.command.impl;
 
 import com.epam.conference.command.Command;
+import com.epam.conference.command.ParameterValue;
 import com.epam.conference.controller.Router;
 import com.epam.conference.entity.ParticipantData;
 import com.epam.conference.entity.Person;
@@ -15,11 +16,11 @@ public class RegisterCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-        String login = request.getParameter("login");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
+        String login = request.getParameter(ParameterValue.LOGIN);
+        String email = request.getParameter(ParameterValue.EMAIL);
+        String password = request.getParameter(ParameterValue.PASSWORD);
+        String name = request.getParameter(ParameterValue.NAME);
+        String surname = request.getParameter(ParameterValue.SURNAME);
 
         ParticipantService participantService = new ParticipantService();
 
@@ -31,7 +32,7 @@ public class RegisterCommand implements Command {
         try {
             participantService.createParticipant(person, data);
         } catch (ServiceException e) {
-            request.setAttribute("error", e.getMessage());
+            request.setAttribute(ParameterValue.ERROR, e.getMessage());
         }
         return Router.PAGE_MAIN;
     }

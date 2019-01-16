@@ -1,6 +1,7 @@
 package com.epam.conference.command.impl.routing;
 
 import com.epam.conference.command.Command;
+import com.epam.conference.command.ParameterValue;
 import com.epam.conference.controller.Router;
 import com.epam.conference.entity.ParticipantData;
 import com.epam.conference.entity.Person;
@@ -17,7 +18,7 @@ public class ToProfilePageCommand implements Command {
         String page;
 
         HttpSession session = request.getSession();
-        int participantId = Integer.parseInt(session.getAttribute("personId").toString());
+        int participantId = Integer.parseInt(session.getAttribute(ParameterValue.PERSON_ID).toString());
 
         ParticipantService participantService = new ParticipantService();
 
@@ -29,12 +30,12 @@ public class ToProfilePageCommand implements Command {
             participantData = participantService.findParticipantData(participantId);
             page = Router.PAGE_PROFILE;
         } catch (ServiceException e) {
-            request.setAttribute("error", e);
+            request.setAttribute(ParameterValue.ERROR, e);
             page = Router.PAGE_ERROR;
         }
 
-        request.getSession().setAttribute("participantInfo", participant);
-        request.getSession().setAttribute("participantData", participantData);
+        request.getSession().setAttribute(ParameterValue.PARTICIPANT_INFO, participant);
+        request.getSession().setAttribute(ParameterValue.PARTICIPANT_DATA, participantData);
 
         return page;
     }
