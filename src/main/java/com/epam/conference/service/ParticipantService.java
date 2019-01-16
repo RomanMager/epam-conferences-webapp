@@ -19,8 +19,7 @@ public class ParticipantService {
         try {
             participantDAOImpl.registerParticipant(person, data);
         } catch (DaoException e) {
-//            throw new ServiceException(e);
-            log.error(e);
+            throw new ServiceException(e);
         }
     }
 
@@ -34,24 +33,36 @@ public class ParticipantService {
         return personList;
     }
 
-    public Person findParticipant(String login, String password) {
-        Person person = null;
+    public Person findParticipant(String login, String password) throws ServiceException {
+        Person person;
         try {
             person = ParticipantDaoImpl.getInstance().findParticipantByLoginPassword(login, password);
         } catch (DaoException e) {
-            e.printStackTrace();
+            throw new ServiceException(e);
         }
         return person;
     }
 
-    public Person findParticipant(int participantId) {
-        Person person = null;
+    public Person findParticipant(int participantId) throws ServiceException {
+        Person person;
+
+        try {
+            person = ParticipantDaoImpl.getInstance().findParticipantById(participantId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
 
         return person;
     }
 
-    public ParticipantData findParticipantData(int participantId) {
-        ParticipantData data = null;
+    public ParticipantData findParticipantData(int participantId) throws ServiceException {
+        ParticipantData data;
+
+        try {
+            data = ParticipantDaoImpl.getInstance().findParticipantDataById(participantId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
 
         return data;
     }

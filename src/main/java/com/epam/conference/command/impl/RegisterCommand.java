@@ -31,7 +31,7 @@ public class RegisterCommand implements Command {
         try {
             participantService.createParticipant(person, data);
         } catch (ServiceException e) {
-            request.setAttribute("error", e.getMessage()); // TODO: Is it a valid way to handle exceptions in commands?
+            request.setAttribute("error", e.getMessage());
         }
         return Router.PAGE_MAIN;
     }
