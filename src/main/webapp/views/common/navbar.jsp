@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link">
+                    <a class="nav-link" href="controller?command=to_main_page">
                         <i class="fas fa-home" aria-hidden="true"></i> Home
                     </a>
                 </li>
