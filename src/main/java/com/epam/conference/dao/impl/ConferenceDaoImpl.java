@@ -7,6 +7,22 @@ import com.epam.conference.exception.DaoException;
 import java.util.List;
 
 public class ConferenceDaoImpl implements ConferenceDao {
+    private static final String SQL_CREATE_CONFERENCE = "";
+
+    private static ConferenceDaoImpl instance = new ConferenceDaoImpl();
+
+    private ConferenceDaoImpl() {
+    }
+
+    public static ConferenceDaoImpl getInstance() {
+        return instance;
+    }
+
+    @Override
+    public void add(Conference entity) throws DaoException {
+        throw new UnsupportedOperationException();
+    }
+
     @Override
     public Conference findByName(String name) throws DaoException {
         return null;
@@ -15,11 +31,6 @@ public class ConferenceDaoImpl implements ConferenceDao {
     @Override
     public List<Conference> findAll() throws DaoException {
         return null;
-    }
-
-    @Override
-    public void add(Conference entity) throws DaoException {
-        throw new UnsupportedOperationException();
     }
 
     @Override
