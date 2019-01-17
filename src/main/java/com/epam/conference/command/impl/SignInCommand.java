@@ -29,7 +29,7 @@ public class SignInCommand implements Command {
                 session.setAttribute(ParameterValue.LOGIN, participant.getLogin());
                 session.setAttribute(ParameterValue.ROLE, participant.getRole().getRoleName());
                 session.setAttribute(ParameterValue.PERSON_ID, participant.getPersonId());
-                page = Router.PAGE_PROFILE;
+                page = Router.PAGE_MAIN;
             } else {
                 request.setAttribute(ParameterValue.ERROR, "Incorrect login or password");
                 page = Router.PAGE_ERROR;
