@@ -51,7 +51,7 @@
                         <c:if test="${role == 'admin'}">
                             <li class="nav-item">
                                 <a class="nav-link"
-                                   href="${pageContext.request.contextPath}controller?command=create_conference">
+                                   href="${pageContext.request.contextPath}controller?command=to_create_conference_page">
                                     <i class="fa fa-calendar-plus" aria-hidden="true"></i> Create Conference
                                 </a>
                             </li>
