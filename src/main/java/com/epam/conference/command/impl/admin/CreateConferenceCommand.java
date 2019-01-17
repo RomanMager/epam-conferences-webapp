@@ -9,7 +9,7 @@ import com.epam.conference.service.ConferenceService;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class CreateConference implements Command {
+public class CreateConferenceCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
