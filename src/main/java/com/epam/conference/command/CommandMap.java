@@ -4,6 +4,7 @@ import com.epam.conference.command.impl.GetUsersCommand;
 import com.epam.conference.command.impl.RegisterCommand;
 import com.epam.conference.command.impl.SignInCommand;
 import com.epam.conference.command.impl.SignOutCommand;
+import com.epam.conference.command.impl.admin.CreateConference;
 import com.epam.conference.command.impl.routing.ToLoginPageCommand;
 import com.epam.conference.command.impl.routing.ToMainPageCommand;
 import com.epam.conference.command.impl.routing.ToProfilePageCommand;
@@ -17,7 +18,8 @@ public enum CommandMap {
     REGISTER(new RegisterCommand()),
     SIGN_IN(new SignInCommand()),
     SIGN_OUT(new SignOutCommand()),
-    GET_USERS(new GetUsersCommand());
+    GET_USERS(new GetUsersCommand()),
+    CREATE_CONFERENCE(new CreateConference());
 
     private final Command command;
 

@@ -7,6 +7,7 @@ public class Router {
     public static final String PAGE_PARTICIPANTS = "/views/participants.jsp";
     public static final String PAGE_PROFILE = "/views/profile.jsp";
     public static final String PAGE_ERROR = "/views/error/error.jsp";
+    public static final String PAGE_CREATE_CONFERENCE = "/views/admin/create-conference.jsp";
 
     private Router() {
     }

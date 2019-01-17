@@ -48,6 +48,15 @@
                             </a>
                         </li>
 
+                        <c:if test="${role == 'admin'}">
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   href="${pageContext.request.contextPath}controller?command=create_conference">
+                                    <i class="fa fa-calendar-plus" aria-hidden="true"></i> Create Conference
+                                </a>
+                            </li>
+                        </c:if>
+
                         <li class="nav-item">
                             <a class="nav-link" href="${pageContext.request.contextPath}controller?command=sign_out">
                                 <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Sign Out
