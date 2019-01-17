@@ -47,7 +47,8 @@
                 <%--placeholder="Conf Description" required>--%>
                 <%--</div>--%>
                 <div class="col-sm-10">
-                <textarea class="form-control" id="conferenceDescription" placeholder="Conf Description" required>
+                <textarea class="form-control" name="description" id="conferenceDescription"
+                          placeholder="Conf Description" required>
                 </textarea>
                 </div>
             </div>
