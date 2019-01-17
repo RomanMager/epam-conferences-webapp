@@ -14,4 +14,10 @@ public class Conference extends Entity {
     private String title;
     private String topic;
     private String description;
+
+    public Conference(String title, String topic, String description) {
+        this.title = title;
+        this.topic = topic;
+        this.description = description;
+    }
 }
