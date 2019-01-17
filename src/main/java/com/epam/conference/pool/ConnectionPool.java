@@ -16,7 +16,6 @@ public class ConnectionPool {
     private static ConnectionPool instance;
     private static ReentrantLock locker = new ReentrantLock();
 
-    // Register DB drivers
     static {
         try {
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
@@ -53,8 +52,7 @@ public class ConnectionPool {
         for (int i = 0; i <= POOL_SIZE; i++) {
             try {
                 ProxyConnection connection = new ProxyConnection(DriverManager.getConnection(DatabaseConfigurator.readUrl(), DatabaseConfigurator
-                        .readProperties()
-                ));
+                        .readProperties()));
                 connectionQueue.offer(connection);
             } catch (SQLException e) {
                 log.error("Unable to initialize Connection Pool.");
@@ -77,7 +75,6 @@ public class ConnectionPool {
         connectionQueue.offer(connection);
     }
 
-    // deregister drivers
     public void destroy() {
         try {
             for (int i = 0; i < POOL_SIZE; i++) {

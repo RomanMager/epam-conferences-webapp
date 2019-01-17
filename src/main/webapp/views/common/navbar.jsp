@@ -41,12 +41,14 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               href="${pageContext.request.contextPath}controller?command=to_profile_page">
-                                <i class="fa fa-user" aria-hidden="true"></i> Account
-                            </a>
-                        </li>
+                        <c:if test="${role == 'participant'}">
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   href="${pageContext.request.contextPath}controller?command=to_profile_page">
+                                    <i class="fa fa-user" aria-hidden="true"></i> Account
+                                </a>
+                            </li>
+                        </c:if>
 
                         <c:if test="${role == 'admin'}">
                             <li class="nav-item">

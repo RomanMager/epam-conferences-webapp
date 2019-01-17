@@ -22,6 +22,7 @@ public class ParticipantDaoImpl implements com.epam.conference.dao.ParticipantDa
     private static final String SQL_FIND_PARTICIPANT_BY_LOGIN_PASSWORD = "SELECT P.personId, P.login, P.email, P.password, P.roleId, R.roleName FROM persons P JOIN roles R ON P.roleId = R.roleId WHERE P.login = ? AND P.password = ?;";
     private static final String SQL_FIND_PARTICIPANT_BY_ID = "SELECT P.personId, P.login, P.email, P.roleId, P.password, R.roleName FROM persons P INNER JOIN roles R ON P.roleId = R.roleId WHERE P.personId=?;";
     private static final String SQL_FIND_PARTICIPANT_DATA_BY_ID = "SELECT pd.participantDataId, pd.personId, pd.name, pd.surname FROM participant_data pd WHERE personId = ?;";
+
     private static ParticipantDaoImpl instance = new ParticipantDaoImpl();
 
     private ParticipantDaoImpl() {

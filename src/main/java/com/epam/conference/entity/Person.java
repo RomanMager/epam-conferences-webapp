@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true) // TODO: Really need to call super? ('Entity' class is empty)
+@EqualsAndHashCode(callSuper = true)
 public class Person extends Entity {
     private int personId;
     private String login;

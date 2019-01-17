@@ -42,15 +42,15 @@
 
             <div class="form-group row">
                 <label for="conferenceDescription" class="col-sm-2 col-form-label">Conference Description*</label>
-                <%--<div class="col-sm-10">--%>
-                <%--<input type="text" name="description" class="form-control" id="conferenceDescription"--%>
-                <%--placeholder="Conf Description" required>--%>
-                <%--</div>--%>
                 <div class="col-sm-10">
-                <textarea class="form-control" name="description" id="conferenceDescription"
-                          placeholder="Conf Description" required>
-                </textarea>
+                    <input type="text" name="description" class="form-control" id="conferenceDescription"
+                           placeholder="Conf Description" required>
                 </div>
+                <%--<div class="col-sm-10">--%>
+                <%--<textarea class="form-control" name="description" id="conferenceDescription"--%>
+                <%--placeholder="Conf Description" required>--%>
+                <%--</textarea>--%>
+                <%--</div>--%>
             </div>
 
             <div class="row">

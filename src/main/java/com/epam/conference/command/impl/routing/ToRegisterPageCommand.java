@@ -10,5 +10,4 @@ public class ToRegisterPageCommand implements Command {
     public String execute(HttpServletRequest request) {
         return Router.PAGE_REGISTRATION;
     }
-
 }

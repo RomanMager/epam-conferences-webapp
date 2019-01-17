@@ -28,7 +28,6 @@ public class RegisterCommand implements Command {
         Person person = new Person(login, email, password, role);
         ParticipantData data = new ParticipantData(name, surname);
 
-        // TODO: Check if already exists in DB
         try {
             participantService.createParticipant(person, data);
         } catch (ServiceException e) {

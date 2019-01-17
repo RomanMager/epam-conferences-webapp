@@ -15,9 +15,9 @@ public class ParticipantService {
     public void createParticipant(Person person, ParticipantData data) throws ServiceException {
         // TODO: VALIDATION
         //      - Check if already exists in DB
-        ParticipantDaoImpl participantDAOImpl = ParticipantDaoImpl.getInstance();
+        // ParticipantDaoImpl participantDAOImpl = ParticipantDaoImpl.getInstance();
         try {
-            participantDAOImpl.registerParticipant(person, data);
+            ParticipantDaoImpl.getInstance().registerParticipant(person, data);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

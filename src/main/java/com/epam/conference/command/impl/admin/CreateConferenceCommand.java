@@ -8,6 +8,7 @@ import com.epam.conference.exception.ServiceException;
 import com.epam.conference.service.ConferenceService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class CreateConferenceCommand implements Command {
 
@@ -17,12 +18,14 @@ public class CreateConferenceCommand implements Command {
         String topic = request.getParameter(ParameterValue.TOPIC);
         String description = request.getParameter(ParameterValue.DESCRIPTION);
 
-        ConferenceService conferenceService = new ConferenceService();
+        HttpSession session = request.getSession();
+        int adminId = Integer.parseInt(session.getAttribute(ParameterValue.PERSON_ID).toString());
 
+        ConferenceService conferenceService = new ConferenceService();
         Conference conference = new Conference(title, topic, description);
 
         try {
-            conferenceService.createConference(conference);
+            conferenceService.createConference(conference, adminId);
         } catch (ServiceException e) {
             request.setAttribute(ParameterValue.ERROR, e.getMessage());
         }

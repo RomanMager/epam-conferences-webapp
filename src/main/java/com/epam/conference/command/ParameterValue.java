@@ -11,7 +11,6 @@ public class ParameterValue {
     public static final String PERSON_ID = "personId";
     public static final String ROLE = "role";
 
-    public static final String PARTICIPANTS = "participants";
     public static final String PARTICIPANT_DATA = "participantData";
     public static final String PARTICIPANT_INFO = "participantInfo";
     public static final String TITLE = "title";

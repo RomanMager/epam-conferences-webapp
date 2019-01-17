@@ -1,6 +1,5 @@
 package com.epam.conference.command;
 
-import com.epam.conference.command.impl.GetUsersCommand;
 import com.epam.conference.command.impl.RegisterCommand;
 import com.epam.conference.command.impl.SignInCommand;
 import com.epam.conference.command.impl.SignOutCommand;
@@ -16,7 +15,6 @@ public enum CommandMap {
     REGISTER(new RegisterCommand()),
     SIGN_IN(new SignInCommand()),
     SIGN_OUT(new SignOutCommand()),
-    GET_USERS(new GetUsersCommand()),
     CREATE_CONFERENCE(new CreateConferenceCommand());
 
     private final Command command;
