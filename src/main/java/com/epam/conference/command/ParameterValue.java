@@ -14,4 +14,7 @@ public class ParameterValue {
     public static final String PARTICIPANTS = "participants";
     public static final String PARTICIPANT_DATA = "participantData";
     public static final String PARTICIPANT_INFO = "participantInfo";
+    public static final String TITLE = "title";
+    public static final String TOPIC = "topic";
+    public static final String DESCRIPTION = "description";
 }
